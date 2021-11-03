@@ -13,7 +13,7 @@
 */
 
 sangria(get, '', _Pedido):- !,
-    envia_tabela_sangria.
+    envia_tabela_sangria. 
 
 /*
 	GET /api/v1/sangria/Numero

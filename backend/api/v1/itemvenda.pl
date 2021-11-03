@@ -13,7 +13,7 @@
 */
 
 itemvenda(get, '', _Pedido):- !,
-    envia_tabela_itemvenda.
+    envia_tabela_itemvenda. 
 
 /*
 	GET /api/v1/itemvenda/IdItemVenda
