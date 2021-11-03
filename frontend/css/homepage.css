@@ -1,0 +1,39 @@
+body{
+	margin-top: 1.5rem;
+}
+
+a{
+	text-decoration: none;
+	color: white;
+}
+
+a:hover{
+	color: white;
+}
+
+.card{
+	margin: 0.5rem;
+
+	width: 20rem;
+	height: 16rem; 
+	
+	text-align: center;	
+	justify-content: safe center;
+
+	font-size: 25pt;
+
+	border-style: none;
+	border-radius: 0.9rem;
+
+	box-shadow: 2px 2px 5px gray;
+	background: rgb(5,2,57);
+	background: linear-gradient(41deg, rgba(5,2,57,1) 0%, rgba(9,75,121,1) 47%, rgba(0,166,200,1) 100%);
+
+	color: white;
+}
+
+.card:hover{
+	box-shadow: 4px 4px 5px #393939;
+	transition:1.5s;
+}
+
