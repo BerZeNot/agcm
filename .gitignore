@@ -1,2 +1,2 @@
 *.log
-backend/bd/tabelas/
+/backend/bd/tabelas/
