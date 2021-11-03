@@ -72,7 +72,7 @@ sangria(delete, AtomNumero, _Pedido):-
 */
 
 sangria(Metodo, Numero, _Pedido):-
-	% responde com o código 405 Method Not Allowed
+	% responde com o codigo 405 Method Not Allowed
     throw(http_reply(method_not_allowed(Metodo, Numero))).
 
 
