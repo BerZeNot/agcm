@@ -123,6 +123,14 @@ http:location(webfonts, root(webfonts), []).
 %% %%  --- Funcionário ---
 :- http_handler( root(funcionarios), funcionarios, []).
 
+%% %% A página de cadastro de novos funcionarios
+:- http_handler( root(cadastrarFuncionario), cadastroFuncionario, []).
+
+%% %% A página de edição dos dados de um funcionario
+:- http_handler( root(funcionarios/editar/Id), editar_funcionario(Id), []).
+
+
+
 %% Rotas da API
 :- http_handler( api1(produtos/Id), produtos(Metodo, Id),
 				[ method(Metodo),
@@ -149,5 +157,9 @@ http:location(webfonts, root(webfonts), []).
 				  methods([ get, post, put, delete]) ]).
 
 :- http_handler( api1(vendas/IdVenda), vendas(Metodo, IdVenda),
+				[ method(Metodo),
+				  methods([ get, post, put, delete]) ]).
+
+:- http_handler( api1(funcionarios/Id), funcionarios(Metodo, Id),
 				[ method(Metodo),
 				  methods([ get, post, put, delete]) ]).

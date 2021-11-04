@@ -1,2 +1,9 @@
 *.log
 /backend/bd/tabelas/
+backend/bd/tabelas/tbl_chave.pl
+backend/bd/tabelas/tbl_cliente.pl
+backend/bd/tabelas/tbl_itemvenda.pl
+backend/bd/tabelas/tbl_pessoa.pl
+backend/bd/tabelas/tbl_produto.pl
+backend/bd/tabelas/tbl_sangria.pl
+backend/bd/tabelas/tbl_vendas.pl

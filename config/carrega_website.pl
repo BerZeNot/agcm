@@ -30,6 +30,8 @@
                 frontend(cadastrarSangria),
                 frontend(editarSangria),
                 frontend(funcionarios),
+                frontend(cadastrarFuncionario),
+                frontend(editarFuncionario),
                 frontend(fluxodecaixa),
                 frontend(cadastrarFluxoDeCaixa),
                 frontend(editarFluxoDeCaixa),
