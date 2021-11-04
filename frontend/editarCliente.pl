@@ -31,7 +31,7 @@ form_cliente(CPF, Nome, Endereco, Telefone, Bairro, Identidade,
                 onsubmit("redirecionaResposta( event, '/cliente' )"),
                 action('/api/v1/cliente/~w' - CPF) ],
               [ \metodo_de_envio('PUT'),
-                \campo_nao_editavel(cpf, 'CPF', number, CPF),
+                \campo_nao_editavel_cliente(cpf, 'CPF', number, CPF),
                 \campo_cliente(nome, 'Nome', text, Nome),
                 \campo_cliente(endereco, 'Endereco', text, Endereco),
                 \campo_cliente(telefone, 'Telefone', number, Telefone),
@@ -63,7 +63,7 @@ campo_cliente(Nome, Rotulo, Tipo, Valor) -->
              ] )).
 
 
-campo_nao_editavel(Nome, Rotulo, Tipo, Valor) -->
+campo_nao_editavel_cliente(Nome, Rotulo, Tipo, Valor) -->
     html(div(class('mb-3 w-25'),
              [ label([ for(Nome), class('form-label')], Rotulo),
                input([ type(Tipo), class('form-control'),

@@ -28,7 +28,7 @@ form_fluxodecaixa(Id, NumeroTransacao, Valor) -->
                 onsubmit("redirecionaResposta( event, '/fluxodecaixa' )"),
                 action('/api/v1/fluxodecaixa/~w' - Id) ],
               [ \metodo_de_envio('PUT'),
-                \campo_nao_editavel(id, 'Id', number, Id),
+                \campo_nao_editavel_fluxodecaixa(id, 'Id', number, Id),
                 \campo_fluxodecaixa(numerotransacao, 'Numero da Transacao', number, NumeroTransacao),
                 \campo_fluxodecaixa(valor, 'Valor', number, Valor),
                 \confirmar_ou_cancelar_fluxodecaixa('/fluxodecaixa')
@@ -52,7 +52,7 @@ campo_fluxodecaixa(Nome, Rotulo, Tipo, Valor) -->
              ] )).
 
 
-campo_nao_editavel(Nome, Rotulo, Tipo, Valor) -->
+campo_nao_editavel_fluxodecaixa(Nome, Rotulo, Tipo, Valor) -->
     html(div(class('mb-3 w-25'),
              [ label([ for(Nome), class('form-label')], Rotulo),
                input([ type(Tipo), class('form-control'),

@@ -31,7 +31,7 @@ form_funcionario(Id, Nome, Endereco, Telefone, Bairro, Cpf, Identidade, Compleme
                 onsubmit("redirecionaResposta( event, '/funcionarios' )"),
                 action('/api/v1/funcionarios/~w' - Id) ],
               [ \metodo_de_envio('PUT'),
-                \campo_nao_editavel(id, 'Id', number, Id),
+                \campo_nao_editavel_funcionario(id, 'Id', number, Id),
                 \campo_cad_funcionario(nome, 'Nome', text, Nome),
                 \campo_cad_funcionario(endereco, 'Endereco', text, Endereco),
                 \campo_cad_funcionario(telefone, 'Telefone', number, Telefone),
@@ -44,11 +44,11 @@ form_funcionario(Id, Nome, Endereco, Telefone, Bairro, Cpf, Identidade, Compleme
                 \campo_cad_funcionario(carteiratrabalho, 'Carteira de Trabalho', text, CarteiraTrabalho),
                 \campo_cad_funcionario(ferias, 'Ferias', text, Ferias),
                 \campo_cad_funcionario(horario, 'Horario', text, Horario),
-                \confirmar_ou_cancelar_cliente('/funcionarios')
+                \confirmar_ou_cancelar_funcionario('/funcionarios')
               ])).
 
 
-confirmar_ou_cancelar_cliente(RotaDeRetorno) -->
+confirmar_ou_cancelar_funcionario(RotaDeRetorno) -->
     html(div([ class('btn-group'), role(group), 'aria-label'('Confirmar ou cancelar')],
              [ button([ type(submit),
                         class('btn btn-outline-primary')], 'Confirmar'),
@@ -65,7 +65,7 @@ campo_cad_funcionario(Nome, Rotulo, Tipo, Valor) -->
              ] )).
 
 
-campo_nao_editavel(Nome, Rotulo, Tipo, Valor) -->
+campo_nao_editavel_funcionario(Nome, Rotulo, Tipo, Valor) -->
     html(div(class('mb-3 w-25'),
              [ label([ for(Nome), class('form-label')], Rotulo),
                input([ type(Tipo), class('form-control'),
