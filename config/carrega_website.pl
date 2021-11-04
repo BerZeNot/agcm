@@ -29,21 +29,23 @@
                 frontend(sangria),
                 frontend(cadastrarSangria),
                 frontend(editarSangria),
-				        frontend(funcionarios),
-				        frontend(fluxodecaixa),
+                frontend(funcionarios),
+                frontend(fluxodecaixa),
+                frontend(cadastrarFluxoDeCaixa),
+                frontend(editarFluxoDeCaixa),
                 frontend(gerenciadorVendas)
               ],
               [	silent(true),
                 if(not_loaded) ]).
 
 % Carrega os arquivos do backend
-:- load_files([ api1(produtos), % API REST
+:- load_files([ api1(produtos),
                 api1(pessoas),
                 api1(cliente),
                 api1(itemvenda),
                 api1(sangria),
-				api1(funcionarios),
-				api1(fluxodecaixa),
+                api1(funcionarios),
+                api1(fluxodecaixa),
                 api1(vendas)
               ],
               [ silent(true),

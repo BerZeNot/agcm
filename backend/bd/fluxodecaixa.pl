@@ -1,28 +1,29 @@
 :- module(fluxodecaixa,[
-	insere/3,
-	remove/1,
-	atualiza/3
+	cadastrarFluxoDeCaixa/3,
+	removerFluxoDeCaixa/1,
+	atualizarFluxoDeCaixa/3
 ]).
 :- use_module(library(persistency)).
+:- use_module(chave, []).
 :- persistent
    fluxodecaixa(id:positive_integer,
-	            numeroTransacao:positive_integer,
-				valor:positive_integer).
+		numeroTransacao:positive_integer,
+		valor:positive_integer).
 
-carrega_tab(ArqTabela):- 
+carrega_tab(ArqTabela):-
 	db_attach(ArqTabela, []).
 
-insere(Id, NumeroTransacao, Valor):-
+cadastrarFluxoDeCaixa(Id, NumeroTransacao, Valor):-
 	   chave:pk(fluxodecaixa, Id), % obtem a chave primária
 	   with_mutex(fluxodecaixa,
                   assert_fluxodecaixa(Id, NumeroTransacao, Valor)).
 
-remove(Id):-
+removerFluxoDeCaixa(Id):-
 		with_mutex(fluxodecaixa,
 			retract_fluxodecaixa(Id, _NumeroTransacao , _Valor)
 		).
 
-atualiza(Id, NumeroTransacao, Valor):-
+atualizarFluxoDeCaixa(Id, NumeroTransacao, Valor):-
 	fluxodecaixa:fluxodecaixa(Id, _, _),
 	with_mutex(fluxodecaixa,
 			(retractall_fluxodecaixa(Id, _NumeroTransacao, _Valor),

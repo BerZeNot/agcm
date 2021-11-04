@@ -83,7 +83,7 @@ linha_fluxodecaixa(Id, NumeroTransacao, Valor, Acoes):-
 
 acoes_linha_fluxodecaixa(Id, Campo):-
 	Campo = [ a([ class('text-success'), title('Alterar'),
-				href('/produto/editar/~w' - Id),
+				href('/fluxodecaixa/editar/~w' - Id),
 				 'data-toggle'(tooltip)],
 				[ \lapis ]),
 			  a([ class('text-danger ms-1'), title('Excluir'),

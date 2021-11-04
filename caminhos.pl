@@ -9,10 +9,13 @@
 
 
 %% Diretório do Paulo
-user:file_search_path(dir_base, '/home/paulo/Documentos/Anotações_Faculdade/2nd_semestre/Programação_Lógica/Trabalho_final/agcm/').
+%% user:file_search_path(dir_base,
+% '/home/paulo/Documentos/Anotações_Faculdade/2nd_semestre/Programação_Lógica/Trabalho_final/agcm/').
+
+
 
 %% Diretório do Igor
-%% user:file_search_path(dir_base, 'C:\\Users\\augus\\OneDrive\\Documentos\\Prolog').
+user:file_search_path(dir_base, 'C:\\Users\\augus\\OneDrive\\Documentos\\Prolog').
 
 %% Diretório do Davide
 %% user:file_search_path(dir_base, 'C:\\Users\\Pichau\\Desktop').

@@ -92,6 +92,12 @@ http:location(webfonts, root(webfonts), []).
 %% %% A página de listar todos os fluxos de caixa
 :- http_handler( root(fluxodecaixa), fluxodecaixa, []).
 
+%% %% A página de cadastro de novos fluxos de caixa
+:- http_handler( root(cadastrarFluxoDeCaixa), cadastroFluxoDeCaixa, []).
+
+%% %% A página de edição dos dados de um fluxo de caixa
+:- http_handler( root(fluxodecaixa/editar/Id), editar_fluxodecaixa(Id), []).
+
 
 %% %%  --- SANGRIA ---
 %% %% A página de listar todas as sangrias
@@ -138,7 +144,7 @@ http:location(webfonts, root(webfonts), []).
 				[ method(Metodo),
 				  methods([ get, post, put, delete]) ]).
 
-:- http_handler( api1(fluxodecaixa/Numero), fluxodecaixa(Metodo, Numero),
+:- http_handler( api1(fluxodecaixa/Id), fluxodecaixa(Metodo, Id),
 				[ method(Metodo),
 				  methods([ get, post, put, delete]) ]).
 

@@ -22,7 +22,7 @@ carrega_tab(ArqTabela):- db_attach(ArqTabela, []).
 %% Realizacao de uma nova sangria
 realizarSangria(Numero, Valor, Hora):-
     with_mutex(sangria,
-	    (chave:pk(itemvenda, Numero), % obtem a chave primaria
+	    (chave:pk(sangria, Numero), % obtem a chave primaria
 	     assert_sangria(Numero, Valor, Hora))).
 
 %% Remover sangria
