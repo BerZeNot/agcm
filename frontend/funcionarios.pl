@@ -14,14 +14,13 @@ funcionarios(_):-
 		boot5rest,
 		[ title('Funcionarios')],
 		[ div(class(container),
-			[ a(href('/'),img(src('/img/house.svg'))),
-			  \html_requires(css('estiloGeral.css')),
-			  \html_requires(js('agcm.js')),
-			  \titulo_da_pagina_funcionarios('funcionarios'),
-			  \tabela_de_funcionarios
-			])
-		]
-	).
+		      [ a(href('/'),img(src('/img/house.svg'))),
+			\html_requires(css('estiloGeral.css')),
+			\html_requires(js('agcm.js')),
+			 \titulo_da_pagina_funcionarios('Lista de funcionarios'),
+			 \tabela_de_funcionarios
+		      ])
+		]).
 
 
 titulo_da_pagina_funcionarios(Titulo) -->
@@ -31,8 +30,8 @@ titulo_da_pagina_funcionarios(Titulo) -->
 
 tabela_de_funcionarios -->
 	html(div(class('container-fluid py-3'),
-		[ \cabeca_da_tabela_funcionarios('Funcionarios', '/funcionarios'),
-			\tabela_funcionarios
+		[ \cabeca_da_tabela_funcionarios('Funcionarios', '/cadastrarFuncionario'),
+		  \tabela_funcionarios
 		])
 	).
 
@@ -49,14 +48,11 @@ cabeca_da_tabela_funcionarios(Titulo,Link) -->
 tabela_funcionarios -->
 	html(div(class('table-responsive-md'),
 		table(class('table table-striped w-100'),
-			[
-				\cabecalho_tabela_funcionarios,
-				tbody(\corpo_tabela_funcionarios)
-			]
-		))
-	).
+		      [\cabecalho_funcionarios,
+		       tbody(\corpo_tabela_funcionarios)
+		      ]))).
 
-cabecalho_tabela_funcionarios -->
+cabecalho_funcionarios -->
 	html(thead(tr([ th([scope(col)], '#'),
 			th([scope(col)], 'Nome'),
 			th([scope(col)], 'Endereco'),
@@ -69,7 +65,8 @@ cabecalho_tabela_funcionarios -->
 			th([scope(col)], 'Admissao'),
 			th([scope(col)], 'CarteiraTrabalho'),
 			th([scope(col)], 'Ferias'),
-			th([scope(col)], 'Horario')
+			th([scope(col)], 'Horario'),
+			th([scope(col)], 'Acoes')
 		      ]))).
 
 corpo_tabela_funcionarios -->
@@ -86,22 +83,22 @@ corpo_tabela_funcionarios -->
 		      td(CarteiraTrabalho),
 		      td(Ferias),
 		      td(Horario),
-		      td(Acoes)
+		      td(AcoesFuncionarios)
 		     ]),
 		  linha_funcionarios(Id, Nome, Endereco, Telefone, Bairro, Cpf, Identidade, Complemento,
-				     NumFunc, Admissao, CarteiraTrabalho, Ferias, Horario, Acoes),
+				     NumFunc, Admissao, CarteiraTrabalho, Ferias, Horario, AcoesFuncionarios),
 		  Linhas)},
 	html(Linhas).
 
 
 linha_funcionarios(Id, Nome, Endereco, Telefone, Bairro, Cpf, Identidade, Complemento,
-		   NumFunc, Admissao, CarteiraTrabalho, Ferias, Horario, Acoes):-
+		   NumFunc, Admissao, CarteiraTrabalho, Ferias, Horario, AcoesFuncionarios):-
 	funcionarios:funcionarios(Id, Nome, Endereco, Telefone, Bairro, Cpf, Identidade, Complemento,
-				  NumFunc, Admissao, CarteiraTrabalho, Ferias, Horario, Acoes),
-	acoes_linha_funcionarios(Id, Acoes).
+				  NumFunc, Admissao, CarteiraTrabalho, Ferias, Horario),
+	acoes_funcionarios(Id, AcoesFuncionarios).
 
 
-acoes_linha_funcionarios(Id, Campo):-
+acoes_funcionarios(Id, Campo):-
 	Campo = [ a([ class('text-success'), title('Alterar'),
 		      href('/funcionarios/editar/~w' - Id),
 		      'data-toggle'(tooltip)],
