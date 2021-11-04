@@ -107,10 +107,11 @@ atualiza_tupla_cliente(_{nome:Nome,
                          numvededor:NumVendedor,
                          credito:Credito,
                          valorcredito:ValorCredito}, CPF):-
-    atom_number(Telefone,TelefoneInt),
-    atom_number(NumVendedor,NumVendedorInt),
+    number_string(TelefoneInt, Telefone),
+    number_string(NumVendedorInt, NumVendedor),
+    number_string(ValorCreditoNumber, ValorCredito),
     cliente:atualizarCliente(CPF, Nome, Endereco, TelefoneInt, Bairro, Identidade,
-                             Complemento, Compras, NumVendedorInt, Credito, ValorCredito)
+                             Complemento, Compras, NumVendedorInt, Credito, ValorCreditoNumber)
     -> envia_tupla_cliente(CPF)
     ; throw(http_reply(not_found(CPF))).
 

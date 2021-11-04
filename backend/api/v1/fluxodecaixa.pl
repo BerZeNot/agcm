@@ -75,30 +75,33 @@ fluxodecaixa(Metodo, Id, _Pedido):-
 	% responde com o código 405 Method Not Allowed
 	throw(http_reply(method_not_allowed(Metodo, Id))).
 
-insere_tupla_fluxodecaixa( _{ numeroTransacao:NumeroTransacao,
-                              valor:Valor}):-
-	fluxodecaixa:cadastrarFluxoDeCaixa(Id, NumeroTransacao, Valor)
+insere_tupla_fluxodecaixa( _{numeroTransacao:NumeroTransacao,
+			     valor:Valor}):-
+	number_string(NumeroTransacaoInt, NumeroTransacao),
+	number_string(ValorInt, Valor),
+	fluxodecaixa:cadastrarFluxoDeCaixa(Id, NumeroTransacaoInt, ValorInt)
 	-> envia_tupla_fluxodecaixa(Id)
 	; throw(http_reply(bad_request('Dados inconsistentes'))).
 
 
-atualiza_tupla_fluxodecaixa(_{ numeroTransacao:NumeroTransacao,
-                               valor:Valor}, Id):-
-	fluxodecaixa:atualizarFluxoDeCaixa(Id, NumeroTransacao, Valor)
+atualiza_tupla_fluxodecaixa(_{numeroTransacao:NumeroTransacao,
+			      valor:Valor}, Id):-
+	number_string(NumeroTransacaoInt, NumeroTransacao),
+	number_string(ValorInt, Valor),
+	fluxodecaixa:atualizarFluxoDeCaixa(Id, NumeroTransacaoInt, ValorInt)
 	-> envia_tupla_fluxodecaixa(Id)
 	; throw(http_reply(not_found(Id))).
 
 envia_tupla_fluxodecaixa(Id):-
 	fluxodecaixa:fluxodecaixa(Id, NumeroTransacao, Valor)
-	-> reply_json_dict(_{ id:Id,
-                          numeroTransacao:NumeroTransacao,
-                          valor:Valor})
+	-> reply_json_dict(_{numeroTransacao:NumeroTransacao,
+			     valor:Valor})
 	; throw(http_reply(not_found(Id))).
 
 envia_tabela_fluxodecaixa :-
-	findall( _{ id:Id,
-                numeroTransacao:NumeroTransacao,
-                valor:Valor},
+	findall( _{id:Id,
+		   numeroTransacao:NumeroTransacao,
+		   valor:Valor},
 	fluxodecaixa:fluxodecaixa(Id, NumeroTransacao, Valor),
 	Tuplas ),
 	reply_json_dict(Tuplas). % envia o JSON para o solicitante
