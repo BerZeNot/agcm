@@ -14,15 +14,21 @@ gerenciadorVendas(_):-
 		[ title('Gerenciador de Vendas')],
 		[ div(class('container'),
 			[
-                a(href('/'),img(src('/img/house.svg'))),
 				\html_requires(css('estiloGeral.css')),
+				\html_requires(css('gerenciadorVendas.css')),
 				\html_requires(js('agcm.js')),
 				form([onsubmit("'redirecionaResposta( event, '/gerenciadorVendas' )'"), action('/')],
 				   [
 						\cabecalhoVenda,
 						\pessoasVenda,
 						\formaPagamento,
-						\itensVenda
+						\itensVenda,
+						\itensVenda,
+						\itensVenda,
+						\itensVenda,
+						\itensVenda,
+						\total,
+						\cadastrar_ou_cancelar_venda('/')
 				   ]
 				)
 			])
@@ -33,8 +39,17 @@ gerenciadorVendas(_):-
 cabecalhoVenda -->
 	html(
 		div( id('cabecalhoVenda'),
-			[ label( for('codVenda'),'Venda: '),
-			  input( [type('number'), name('codVenda')])
+
+			[
+				div(id('boxLinkHome'),
+					[a([id('linkHome'),href('/')],img(src('/img/house.svg')))]),
+				div(id('boxCodVenda'),
+					[
+						label( [id('codVenda'),for('codVenda')],'Venda:'),
+			  			input( [type('number'), id('codVenda'),name('codVenda'), class('form-control'), readonly])
+					])
+				
+				
 			]
 		)
 	).
@@ -43,10 +58,10 @@ pessoasVenda -->
 	html(
 		div(
 			id('pessoasVenda'),
-			[ label(for('codVendedor'),'Vendedor'),
-			  input([type('number'), name('codVendedor')]),
+			[ label(for('codVendedor'),'Vendedor:'),
+			  input([type('number'), id('codVendedor'), name('codVendedor'), class('form-row')]),
 			  label(for('codCliente'),'Cliente: '),
-			  input([type('number'), name('codCliente')])
+			  input([type('number'), id('codCliente'), name('codCliente'), class('form-row')])
 			]
 
 		)
@@ -55,39 +70,61 @@ pessoasVenda -->
 formaPagamento -->
 	html(
 		div(
-			id('formaPagamento'),
+			[id('formaPagamento'),class('form-group')],
 			[
 				p('Forma de pagamento: '),
-				input([type('radio'), name('formaPagamento'), id('aVista'),value('1'), 'checked']),
+				input([type('radio'), name('formaPagamento'), id('aVista'),value('1'), class('form-check-input'), 'checked']),
 				label([for('aVista')],'A vista'),
 
-				input([type('radio'), name('formaPagamento'), id('aPrazo'),value('2')]),
+				input([type('radio'), name('formaPagamento'), id('aPrazo'),value('2'), class('form-check-input')]),
 				label([for('aPrazo')],'A prazo')
 			]
 		)
 	).
 
 itensVenda -->
-	html(
+	html([
 		div(
 			id('itensVenda'),
 			[
-				label( for('qtd'),'Qtde: '),
-				input( [type('number'), name('itensVenda'), id('qtd')]),
+				label( for('qtd'),'Qtde:'),
+				input( [type('number'), name('itensVenda'), id('qtd'), class('form-row')]),
 
-				label( for('descricao'),'Descricao: '),
-				input( [type('text'), name('itensVenda'), id('descricao'), readonly]),
+				label( for('cod'),'Cod: '),
+				input( [type('number'), name('itensVenda'), id('cod'), class('form-row')]),
 
-				label( for('valorUnitario'),'Valor Un: '),
-				input( [type('number'), name('itensVenda'), id('valorUnitario'), readonly]),
 
-				label( for('valorTotal'),'Valor Total: '),
-				input( [type('number'), name('itensVenda'), id('valorTotal'), readonly]),
+				label( for('descricao'),'Descricao:'),
+				input( [type('text'), name('itensVenda'), id('descricao'), class('form-row'), readonly]),
 
-				label( for('total'),'Total: '),
-				input( [type('number'), name('itensVenda'), id('total'), readonly])
+				label( for('valorUnitario'),'Valor Un:'),
+				input( [type('number'), name('itensVenda'), id('valorUnitario'), class('form-row'), readonly]),
+
+				label( for('valorTotal'),'Valor Total:'),
+				input( [type('number'), name('itensVenda'), id('valorTotal'), class('form-row'), readonly])
 
 			]
 
 		)
+		]
 	).
+
+
+total -->
+	html(
+
+		div(id(total),
+			[	label( for('total'),'Total:'),
+				input( [type('number'), name('itensVenda'), id('total'), class('form-row'), readonly])
+			]
+		)
+	).
+
+cadastrar_ou_cancelar_venda(RotaDeRetorno) -->
+	html(div([ class('btn-group'), role(group), 'aria-label'('Cadastrar ou cancelar')],
+			 	[ button([ type(submit),
+			 			class('btn btn-primary')], 'Cadastrar'),
+			 	a([ href(RotaDeRetorno),
+			 		class('ms-3 btn btn-danger')], 'Cancelar')
+		 	]
+		)).
