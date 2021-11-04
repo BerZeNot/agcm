@@ -23,7 +23,7 @@ form_itemvenda -->
                 onsubmit("redirecionaResposta( event, '/itemvenda' )"),
                 action('/api/v1/itemvenda/') ],
               [ \metodo_de_envio('POST'),
-                \campo_cad_itemvenda(iditemvenda, 'Id - Item Venda', number),
+                \campo_cad_itemvenda(iditemvenda, 'Id - ItemVenda', number),
                 \campo_cad_itemvenda(idvenda, 'Id - Venda', number),
                 \campo_cad_itemvenda(qtde, 'Quantidade', number),
                 \campo_cad_itemvenda(valor, 'Valor', float),

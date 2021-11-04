@@ -50,35 +50,37 @@ tabela_itemvenda -->
 			]))).
 
 cabecalho_itemvenda -->
-	html(thead(tr([ th([scope(col)], 'Codigo'),
+	html(thead(tr([ th([scope(col)], 'Id - ItemVenda'),
+			th([scope(col)], 'Id - Venda'),
 			th([scope(col)], 'Quantidade'),
 			th([scope(col)], 'Valor'),
 			th([scope(col)], 'Acoes')
 		      ]))).
 
 corpo_tabela_itemvenda -->
-	{findall( tr([th(scope(row), CodItemVenda),
+	{findall( tr([th(scope(row), IdItemVenda),
+		      td(IdVenda),
 		      td(Qtde),
 		      td(Valor),
 		      td(AcoesItemVenda)]),
-		  linha(CodItemVenda, Qtde, Valor, AcoesItemVenda),
+		  linha(IdItemVenda, IdVenda, Qtde, Valor, AcoesItemVenda),
 		  Linhas)
 	},
 	html(Linhas).
 
 
-linha(CodItemVenda, Qtde, Valor, AcoesItemVenda):-
-	itemvenda:itemvenda(CodItemVenda, Qtde, Valor),
-	acoes_itemvenda(CodItemVenda, AcoesItemVenda).
+linha(IdItemVenda, IdVenda, Qtde, Valor, AcoesItemVenda):-
+	itemvenda:itemvenda(IdItemVenda, IdVenda, Qtde, Valor),
+	acoes_itemvenda(IdItemVenda, AcoesItemVenda).
 
 
-acoes_itemvenda(CodItemVenda, Campo):-
+acoes_itemvenda(IdItemVenda, Campo):-
 	Campo = [ a([ class('text-success'), title('Alterar'),
-		      href('/itemvenda/editar/~w' - CodItemVenda),
+		      href('/itemvenda/editar/~w' - IdItemVenda),
 		      'data-toggle'(tooltip)],
 		    [ \lapis ]),
 		  a([ class('text-danger ms-1'), title('Excluir'),
-		      href('/api/v1/itemvenda/~w' - CodItemVenda),
+		      href('/api/v1/itemvenda/~w' - IdItemVenda),
 		      onClick("apagar( event,'/itemvenda' )"),
 		      'data-toggle'(tooltip)],
 		    [ \lixeira ])].
