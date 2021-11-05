@@ -50,35 +50,35 @@ tabela_sangria -->
 			]))).
 
 cabecalho_sangria -->
-	html(thead(tr([ th([scope(col)], 'Numero'),
+	html(thead(tr([ th([scope(col)], '#'),
 			th([scope(col)], 'Valor'),
 			th([scope(col)], 'Hora'),
 			th([scope(col)], 'Acoes')
 		      ]))).
 
 corpo_tabela_sangria -->
-	{findall( tr([th(scope(row), Numero),
+	{findall( tr([th(scope(row), Id),
 		      td(Valor),
 		      td(Hora),
 		      td(AcoesSangria)]),
-		  linha_sangria(Numero, Valor, Hora, AcoesSangria),
+		  linha_sangria(Id, Valor, Hora, AcoesSangria),
 		  Linhas)
 	},
 	html(Linhas).
 
 
-linha_sangria(Numero, Valor, Hora, AcoesSangria):-
-	sangria:sangria(Numero, Valor, Hora),
-	acoes_sangria(Numero, AcoesSangria).
+linha_sangria(Id, Valor, Hora, AcoesSangria):-
+	sangria:sangria(Id, Valor, Hora),
+	acoes_sangria(Id, AcoesSangria).
 
 
-acoes_sangria(Numero, Campo):-
+acoes_sangria(Id, Campo):-
 	Campo = [ a([ class('text-success'), title('Alterar'),
-		      href('/sangria/editar/~w' - Numero),
+		      href('/sangria/editar/~w' - Id),
 		      'data-toggle'(tooltip)],
 		    [ \lapis ]),
 		  a([ class('text-danger ms-1'), title('Excluir'),
-		      href('/api/v1/sangria/~w' - Numero),
+		      href('/api/v1/sangria/~w' - Id),
 		      onClick("apagar( event,'/sangria' )"),
 		      'data-toggle'(tooltip)],
 		    [ \lixeira ])].

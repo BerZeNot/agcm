@@ -23,7 +23,6 @@ form_sangria -->
                 onsubmit("redirecionaResposta( event, '/sangria' )"),
                 action('/api/v1/sangria/') ],
               [ \metodo_de_envio('POST'),
-                \campo_realizar_sangria(numero, 'Numero', number),
                 \campo_realizar_sangria(valor, 'Valor', float),
                 \campo_realizar_sangria(hora, 'Hora', text),
                 \realizar_ou_cancelar_sangria('/sangria')

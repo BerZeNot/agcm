@@ -107,7 +107,7 @@ http:location(webfonts, root(webfonts), []).
 :- http_handler( root(cadastrarSangria), realizarSangria, []).
 
 %% %% A página de edição dos dados de uma sangria
-:- http_handler( root(sangria/editar/Numero), editar_sangria(Numero), []).
+:- http_handler( root(sangria/editar/Id), editar_sangria(Id), []).
 
 
 %% %%  --- ITEMVENDA ---
@@ -148,7 +148,7 @@ http:location(webfonts, root(webfonts), []).
 				[ method(Metodo),
 				  methods([ get, post, put, delete]) ]).
 
-:- http_handler( api1(sangria/Numero), sangria(Metodo, Numero),
+:- http_handler( api1(sangria/Id), sangria(Metodo, Id),
 				[ method(Metodo),
 				  methods([ get, post, put, delete]) ]).
 

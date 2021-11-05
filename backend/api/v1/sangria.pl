@@ -16,15 +16,15 @@ sangria(get, '', _Pedido):- !,
     envia_tabela_sangria. 
 
 /*
-	GET /api/v1/sangria/Numero
-	Retorna uma lista com o item da venda com o Numero informado
+	GET /api/v1/sangria/Id
+	Retorna uma lista com o item da venda com o Id informado
 	ou erro 404 caso o item nao seja encontrado.
 */
 
-sangria(get, AtomNumero, _Pedido):-
-    atom_number(AtomNumero, Numero), % o identificador aparece na rota como atomo,
-    !,						 % convertendo-o para um numero inteiro.
-    envia_tupla_sangria(Numero).
+sangria(get, AtomId, _Pedido):-
+    atom_number(AtomId, Id), % o identificador aparece na rota como atomo,
+    !,						 % convertendo-o para um Id inteiro.
+    envia_tupla_sangria(Id).
 
 
 /*
@@ -42,27 +42,27 @@ sangria(post, _, Pedido):-
 
 
 /*
-	PUT /api/v1/sangria/Numero
-	Atualiza a sangria com o Numero informado.
+	PUT /api/v1/sangria/Id
+	Atualiza a sangria com o Id informado.
 	Os dados deverao ser passados no corpo
 	da requisicao no formato JSON.
 */
 
-sangria(put, AtomNumero, Pedido):-
-    atom_number(AtomNumero, Numero),
+sangria(put, AtomId, Pedido):-
+    atom_number(AtomId, Id),
     http_read_json_dict(Pedido, Dados), % leitura do JSON enviado com o Pedido.
     !,
-    atualiza_tupla_sangria(Dados, Numero).
+    atualiza_tupla_sangria(Dados, Id).
 
 /*
-	DELETE /api/v1/sangria/Numero
-	Apaga o itemvenda com o Numero informado.
+	DELETE /api/v1/sangria/Id
+	Apaga o sangria com o Id informado.
 */
 
-sangria(delete, AtomNumero, _Pedido):-
-    atom_number(AtomNumero, Numero),
+sangria(delete, AtomId, _Pedido):-
+    atom_number(AtomId, Id),
     !,
-    sangria:removerSangria(Numero),
+    sangria:removerSangria(Id),
     throw(http_reply(no_content)). % Responde usando o codigo 204 No Content
 
 
@@ -71,15 +71,13 @@ sangria(delete, AtomNumero, _Pedido):-
 	metodo nao permitido sera retornada.
 */
 
-sangria(Metodo, Numero, _Pedido):-
+sangria(Metodo, Id, _Pedido):-
 	% responde com o codigo 405 Method Not Allowed
-    throw(http_reply(method_not_allowed(Metodo, Numero))).
+    throw(http_reply(method_not_allowed(Metodo, Id))).
 
 
-insere_tupla_sangria( _{numero:Numero,
-                        valor:Valor,
+insere_tupla_sangria( _{valor:Valor,
                         hora:Hora}):-
-    number_string(NumeroInt,Numero),
     number_string(ValorInt,Valor),
     sangria:realizarSangria(Id, ValorInt, Hora)
     -> envia_tupla_sangria(Id)
@@ -87,24 +85,25 @@ insere_tupla_sangria( _{numero:Numero,
 
 
 atualiza_tupla_sangria(_{valor:Valor,
-                         hora:Hora}, Numero):-
-    sangria:atualizarSangria(Numero, Valor, Hora)
-    -> envia_tupla_sangria(Numero)
-    ; throw(http_reply(not_found(Numero))).
+                         hora:Hora}, Id):-
+    number_string(ValorInt,Valor),
+    sangria:atualizarSangria(Id, ValorInt, Hora)
+    -> envia_tupla_sangria(Id)
+    ; throw(http_reply(not_found(Id))).
 
 
-envia_tupla_sangria(Numero):-
-    sangria:sangria(Numero, Valor, Hora)
-    -> reply_json_dict(_{numero:Numero,
+envia_tupla_sangria(Id):-
+    sangria:sangria(Id, Valor, Hora)
+    -> reply_json_dict(_{id:Id,
                          valor:Valor,
                          hora:Hora} )
     ; throw(http_reply(not_found)).
 
 
 envia_tabela_sangria :-
-    findall( _{numero:Numero,
+    findall( _{id:Id,
                valor:Valor,
                hora:Hora},
-    sangria:sangria(Numero, Valor, Hora),
+    sangria:sangria(Id, Valor, Hora),
     Tuplas ),
     reply_json_dict(Tuplas). % envia o JSON para o solicitante

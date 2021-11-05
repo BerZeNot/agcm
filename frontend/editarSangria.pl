@@ -7,9 +7,9 @@
 
 
 /* Pagina para edicao (alteracao) de uma sangria */
-editar_sangria(AtomNumero, _Pedido):-
-    atom_number(AtomNumero, Numero),
-    ( sangria:sangria(Numero, Valor, Hora)
+editar_sangria(AtomId, _Pedido):-
+    atom_number(AtomId, Id),
+    ( sangria:sangria(Id, Valor, Hora)
     ->
     reply_html_page(
         boot5rest,
@@ -17,18 +17,18 @@ editar_sangria(AtomNumero, _Pedido):-
         [ div(class(container),
               [ \html_requires(js('agcm.js')),
                 h1('Editar sangria'),
-                \form_sangria(Numero, Valor, Hora)
+                \form_sangria(Id, Valor, Hora)
               ]) ])
-    ; throw(http_reply(not_found(Numero)))
+    ; throw(http_reply(not_found(Id)))
     ).
 
 
-form_sangria(Numero, Valor, Hora) -->
+form_sangria(Id, Valor, Hora) -->
     html(form([ id('sangria-form'),
                 onsubmit("redirecionaResposta( event, '/sangria' )"),
-                action('/api/v1/sangria/~w' - Numero) ],
+                action('/api/v1/sangria/~w' - Id) ],
               [ \metodo_de_envio('PUT'),
-                \campo_nao_editavel_sangria(numero, 'Numero', number, Numero),
+                \campo_nao_editavel_sangria(id, 'Id', number, Id),
                 \campo_sangria(valor, 'Valor', float, Valor),
                 \campo_sangria(hora, 'Hora', text, Hora),
                 \confirmar_ou_cancelar('/sangria')
