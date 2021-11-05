@@ -24,7 +24,7 @@ form_fluxodecaixa -->
                 action('/api/v1/fluxodecaixa/') ],
               [ \metodo_de_envio('POST'),
                 \campo_cad_fluxodecaixa(numerotransacao, 'Numero da Transacao', number),
-                \campo_cad_fluxodecaixa(valor, 'Valor', number),
+                \campo_cad_fluxodecaixa(valor, 'Valor', float),
                 \cadastrar_ou_cancelar_fluxodecaixa('/fluxodecaixa')
               ])).
 

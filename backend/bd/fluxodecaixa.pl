@@ -8,7 +8,7 @@
 :- persistent
    fluxodecaixa(id:positive_integer,
 		numeroTransacao:positive_integer,
-		valor:positive_integer).
+		valor:float).
 
 carrega_tab(ArqTabela):-
 	db_attach(ArqTabela, []).

@@ -63,7 +63,7 @@ cabecalho_funcionarios -->
 			th([scope(col)], 'Complemento'),
 			th([scope(col)], 'NumFunc'),
 			th([scope(col)], 'Admissao'),
-			th([scope(col)], 'CarteiraTrabalho'),
+			th([scope(col)], 'Carteira de Trabalho'),
 			th([scope(col)], 'Ferias'),
 			th([scope(col)], 'Horario'),
 			th([scope(col)], 'Acoes')

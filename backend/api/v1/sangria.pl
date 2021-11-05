@@ -79,8 +79,10 @@ sangria(Metodo, Numero, _Pedido):-
 insere_tupla_sangria( _{numero:Numero,
                         valor:Valor,
                         hora:Hora}):-
-    sangria:realizarSangria(Numero, Valor, Hora)
-    -> envia_tupla_sangria(Numero)
+    number_string(NumeroInt,Numero),
+    number_string(ValorInt,Valor),
+    sangria:realizarSangria(Id, ValorInt, Hora)
+    -> envia_tupla_sangria(Id)
     ; throw(http_reply(bad_request('Dados inconsistentes'))).
 
 
