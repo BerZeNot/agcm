@@ -12,9 +12,11 @@ cadastroPessoa(_Pedido):-
 		boot5rest,
 		[ title('Cadastrar Pessoa')],
 		[ div(class(container),
-			[\html_requires(js('agcm.js')),
-			h1('Cadastro de Pessoa'),
-			\form_pessoa
+			[
+				\html_requires(css('estiloGeral.css')),
+				\html_requires(js('agcm.js')),
+				h1('Cadastro de Pessoa'),
+				\form_pessoa
 			]) ]).
 
 form_pessoa -->

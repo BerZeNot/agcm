@@ -12,9 +12,11 @@ cadastroProduto(_Pedido):-
 		boot5rest,
 		[ title('Cadastrar Produto')],
 		[ div(class(container),
-			[\html_requires(js('agcm.js')),
-			h1('Cadastro de Produto'),
-			\form_produto
+			[
+				\html_requires(css('estiloGeral.css')),
+				\html_requires(js('agcm.js')),
+				h1('Cadastro de Produto'),
+				\form_produto
 			]) ]).
 
 form_produto -->

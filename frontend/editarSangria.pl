@@ -15,7 +15,9 @@ editar_sangria(AtomId, _Pedido):-
         boot5rest,
         [ title('Sangria')],
         [ div(class(container),
-              [ \html_requires(js('agcm.js')),
+              [ 
+                \html_requires(css('estiloGeral.css')),
+                \html_requires(js('agcm.js')),
                 h1('Editar sangria'),
                 \form_sangria(Id, Valor, Hora)
               ]) ])

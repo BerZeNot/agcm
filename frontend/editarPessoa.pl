@@ -8,7 +8,9 @@ editar_pessoa(AtomCPF, _Pedido):-
 		boot5rest,
 		[ title('Pessoas')],
 		[ div(class(container),
-			  [ \html_requires(js('agcm.js')),
+			  [ 
+			  	\html_requires(css('estiloGeral.css')),
+			  	\html_requires(js('agcm.js')),
 			    h1('Editar Pessoa'),
 			    \form_pessoa(Nome, Endereco, Telefone,Bairro, CPF, Identidade,Complemento)
 			    ]) ])

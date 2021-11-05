@@ -1,3 +1,31 @@
 body{
 	margin-top: 1.5rem;
 }
+
+.btn-primary{
+	border-style: none;
+	background: linear-gradient(4deg, rgba(34,149,74,1) 0%, rgba(29,185,84,1) 100%);
+}
+
+.btn-outline-primary{
+	color: white;
+	border-style: none;
+	background: linear-gradient(4deg, rgba(34,149,74,1) 0%, rgba(29,185,84,1) 100%);
+}
+
+.btn-outline-primary:hover{
+	color: white;
+	border-style: none;
+	background: rgb(27,131,63);
+	background: linear-gradient(4deg, rgba(27,131,63,1) 0%, rgba(16,106,47,1) 100%);
+}
+
+.btn-outline-danger{
+	color: white;
+	background: #dc3545;
+}
+
+.btn-outline-danger:hover{
+	color: white;
+	background: #bd2938;
+}

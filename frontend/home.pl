@@ -22,32 +22,27 @@ home(_):-
 	).
 
 titulo_da_homepage(Titulo) -->
-	html( div(class('text-center aligin-items-center w-100'),
+	html( div(class('titulo text-center aligin-items-center w-100'),
 			h1('display-3', Titulo))).
 
 
-
-
-
+%% Sangria
+%% Funcionários
+%% Pessoas
 opcoes -->
 	html(
 		div( class('container'),[
 			div( class('row'),[
-				div( [class('col card')],a(href('/cliente'),'Gestao de Clientes')),
-				div( [class('col card')],a(href('/produtos'),'Gestao de Produtos')),
+				div( [class('col card clientes')],a(href('/cliente'),'Gestao de Clientes')),
+				div( [class('col card produtos')],a(href('/produtos'),'Gestao de Produtos')),
 				div( class('w-100'),''),
-				div( [class('col card')],a(href('/gerenciadorVendas'),'Gestao de Vendas')),
-				div( [class('col card')],a(href('/fluxodecaixa'),'Fluxo de Caixa'))
+				div( [class('col card vendas')],a(href('/gerenciadorVendas'),'Gestao de Vendas')),
+				div( [class('col card fluxoCaixa')],a(href('/fluxodecaixa'),'Fluxo de Caixa')),
+				div( class('w-100'),''),
+				div( [class('col card sangria')],a(href('/sangria'),'Gestao de Sangria')),
+				div( [class('col card funcionarios')],a(href('/funcionarios'),'Gestão de Funcionarios')),
+				div( class('w-100'),''),
+				div( [class('col card pessoas')],a(href('/pessoas'),'Gestão de Pessoas'))
 			])
 		])
 	).
-
-%% <div class="container">
-%%   <div class="row">
-%%     <div class="col">Gestão de Clientes</div>
-%%     <div class="col">Gestão de Funcionários</div>
-%%     <div class="w-100"></div>
-%%     <div class="col">Gestão de Vendas</div>
-%%     <div class="col">Fluxo de Caixa</div>
-%%   </div>
-%% </div>

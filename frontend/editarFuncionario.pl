@@ -16,7 +16,9 @@ editar_funcionario(AtomId, _Pedido):-
         boot5rest,
         [ title('Funcionarios')],
         [ div(class(container),
-              [ \html_requires(js('agcm.js')),
+              [ 
+                \html_requires(css('estiloGeral.css')),
+                \html_requires(js('agcm.js')),
                 h1('Editar funcionario'),
                 \form_funcionario(Id, Nome, Endereco, Telefone, Bairro, Cpf, Identidade, Complemento,
                                   NumFunc, Admissao, CarteiraTrabalho, Ferias, Horario)

@@ -8,7 +8,9 @@ editar_produto(AtomId, _Pedido):-
 		boot5rest,
 		[ title('Produtos')],
 		[ div(class(container),
-			  [ \html_requires(js('agcm.js')),
+			  [ 
+			  	\html_requires(css('estiloGeral.css')),
+			  	\html_requires(js('agcm.js')),
 			    h1('Editar Produto'),
 			    \form_produto(Id, Nome, QtdAtual, QtdMinima, Preco1, Descricao, Preco2)
 			    ]) ])

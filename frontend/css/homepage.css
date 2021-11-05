@@ -1,5 +1,6 @@
 body{
 	margin-top: 1.5rem;
+	background: white;
 }
 
 a{
@@ -25,15 +26,18 @@ a:hover{
 	border-style: none;
 	border-radius: 0.9rem;
 
-	box-shadow: 2px 2px 5px gray;
+	box-shadow: 2px 2px 5px black;
 	background: rgb(5,2,57);
-	background: linear-gradient(41deg, rgba(5,2,57,1) 0%, rgba(9,75,121,1) 47%, rgba(0,166,200,1) 100%);
 
+	/*Verde*/
+	background: rgb(34,149,74);
+	background: linear-gradient(4deg, rgba(34,149,74,1) 0%, rgba(29,185,84,1) 100%);
 	color: white;
 }
 
+
 .card:hover{
-	box-shadow: 4px 4px 5px #393939;
+	box-shadow: 4px 4px 5px black;
 	transition:1.5s;
 }
 

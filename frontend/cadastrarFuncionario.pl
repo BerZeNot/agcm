@@ -12,7 +12,9 @@ cadastroFuncionario(_Pedido):-
         boot5rest,
         [ title('Funcionario')],
         [ div(class(container),
-              [ \html_requires(js('agcm.js')),
+              [ 
+                \html_requires(css('estiloGeral.css')),
+                \html_requires(js('agcm.js')),
                 h1('Cadastrar funcionario'),
                 \form_funcionario
               ]) ]).

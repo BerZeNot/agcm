@@ -12,7 +12,9 @@ cadastroFluxoDeCaixa(_Pedido):-
         boot5rest,
         [ title('Fluxo de Caixa')],
         [ div(class(container),
-              [ \html_requires(js('agcm.js')),
+              [ 
+                \html_requires(css('estiloGeral.css')),
+                \html_requires(js('agcm.js')),
                 h1('Cadastrar fluxo de caixa'),
                 \form_fluxodecaixa
               ]) ]).

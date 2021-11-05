@@ -12,7 +12,9 @@ cadastroItemVenda(_Pedido):-
         boot5rest,
         [ title('ItemVenda')],
         [ div(class(container),
-              [ \html_requires(js('agcm.js')),
+              [ 
+                \html_requires(css('estiloGeral.css')),
+                \html_requires(js('agcm.js')),
                 h1('Cadastrar item de venda'),
                 \form_itemvenda
               ]) ]).

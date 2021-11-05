@@ -16,7 +16,9 @@ editar_cliente(AtomCPF, _Pedido):-
         boot5rest,
         [ title('Cliente')],
         [ div(class(container),
-              [ \html_requires(js('agcm.js')),
+              [ 
+                \html_requires(css('estiloGeral.css')),
+                \html_requires(js('agcm.js')),
                 h1('Editar cliente'),
                 \form_cliente(CPF, Nome, Endereco, Telefone, Bairro, Identidade,
                               Complemento, Compras, NumVendedor, Credito, ValorCredito)
