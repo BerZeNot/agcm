@@ -40,9 +40,9 @@ opcoes -->
 				div( [class('col card fluxoCaixa')],a(href('/fluxodecaixa'),'Fluxo de Caixa')),
 				div( class('w-100'),''),
 				div( [class('col card sangria')],a(href('/sangria'),'Gestao de Sangria')),
-				div( [class('col card funcionarios')],a(href('/funcionarios'),'Gestão de Funcionarios')),
+				div( [class('col card funcionarios')],a(href('/funcionarios'),'Gestao de Funcionarios')),
 				div( class('w-100'),''),
-				div( [class('col card pessoas')],a(href('/pessoas'),'Gestão de Pessoas'))
+				div( [class('col card pessoas')],a(href('/pessoas'),'Gestao de Pessoas'))
 			])
 		])
 	).
