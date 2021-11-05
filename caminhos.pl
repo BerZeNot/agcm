@@ -53,6 +53,3 @@ user:file_search_path(bd_tabs, bd(tabelas)).
 % API REST
 user:file_search_path(api, backend(api)).
 user:file_search_path(api1, api(v1)).
-
-%% Middle-end
-user:file_search_path(middle_end, projeto(middle_end)).

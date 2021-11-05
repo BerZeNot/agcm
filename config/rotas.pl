@@ -43,6 +43,10 @@ http:location(webfonts, root(webfonts), []).
 :- http_handler( webfonts(.),
 		serve_files_in_directory(dir_webfonts), [prefix]).
 
+:- http_handler( '/favicon.ico',
+                 http_reply_file(dir_img('favicon.ico'), []),
+                 []).
+
 
 
 % Rotas do Frontend
@@ -60,6 +64,7 @@ http:location(webfonts, root(webfonts), []).
 
 %% A página de edição dos dados de um produto cadastrado
 :- http_handler( root(produtos/editar/Id), editar_produto(Id), []).
+
 
 %% %%  --- PESSOAS ---
 %% %% A página de listar todos as pessoas
@@ -120,7 +125,8 @@ http:location(webfonts, root(webfonts), []).
 %% %% A página de edição dos dados de um item de uma venda
 :- http_handler( root(itemvenda/editar/IdItemVenda), editar_itemvenda(IdItemVenda), []).
 
-%% %%  --- Funcionário ---
+
+%% %%  --- FUNCIONARIO ---
 :- http_handler( root(funcionarios), funcionarios, []).
 
 %% %% A página de cadastro de novos funcionarios
