@@ -17,7 +17,7 @@ user:body(boot5rest, Corpo) -->
                                                 'initial-scale=1',
                                                 'shrink-to-fit=no'
                                               ])]), meta(charset('utf-8')),
-                                link([rel('icon'),type('image/icon'), sizes('48x48'), href('favicon.ico')])],
+                                link([rel('icon'),type('image/icon'), sizes('48x48'), href('favicon.ico')])]),
                    \html_root_attribute(lang,'pt-br'),
                    \html_requires(css('bootstrap.min.css')),
                    \html_requires(js('rest.js')),
