@@ -17,16 +17,12 @@ gerenciadorVendas(_):-
 				\html_requires(css('estiloGeral.css')),
 				\html_requires(css('gerenciadorVendas.css')),
 				\html_requires(js('agcm.js')),
-				form([onsubmit("'redirecionaResposta( event, '/gerenciadorVendas' )'"), action('/')],
+				form([onsubmit("redirecionaResposta( event, '/gerenciadorVendas' )"), action('/api/v1/vendas/')],
 				   [
+					    \metodo_de_envio('POST'),
 						\cabecalhoVenda,
 						\pessoasVenda,
 						\formaPagamento,
-						\itensVenda,
-						\itensVenda,
-						\itensVenda,
-						\itensVenda,
-						\itensVenda,
 						\total,
 						\cadastrar_ou_cancelar_venda('/')
 				   ]
@@ -46,7 +42,7 @@ cabecalhoVenda -->
 				div(id('boxCodVenda'),
 					[
 						label( [id('codVenda'),for('codVenda')],'Venda:'),
-			  			input( [type('number'), id('codVenda'),name('codVenda'), class('form-control'), readonly])
+			  			input( [type('number'), id('codVenda'), class('form-control'), readonly])
 					])
 				
 				
@@ -115,7 +111,7 @@ total -->
 
 		div(id(total),
 			[	label( for('total'),'Total:'),
-				input( [type('number'), name('itensVenda'), id('total'), class('form-row'), readonly])
+				input( [type('float'), name('total'), id('total'), class('form-row')])
 			]
 		)
 	).

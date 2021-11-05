@@ -75,38 +75,48 @@ vendas(Metodo, Id, _Pedido):-
 	% responde com o código 405 Method Not Allowed
 	throw(http_reply(method_not_allowed(Metodo, Id))).
 
-insere_tupla_vendas( _{ idVendedor:IdVendedor,
-                        idTransacaoFluxoCaixa:IdTransacaoFluxoCaixa,
-						dataHoraAtual:DataHoraAtual,
-						formaPagamento:FormaPagamento }):-
-	vendas:cadastraNovaVenda(IdVenda, IdVendedor, IdTransacaoFluxoCaixa, DataHoraAtual, FormaPagamento)
+insere_tupla_vendas( _{ codVendedor:IdVendedorString,
+	                    codCliente:IdClienteString,
+						formaPagamento:FormaPagamentoString,
+						total:TotalString }):-
+    number_string(TotalFloat, TotalString),	
+	number_string(IdVendedorInt, IdVendedorString),
+	number_string(IdClienteInt, IdClienteString),
+	number_string(FormaPagamentoInt, FormaPagamentoString),
+
+	vendas:cadastraNovaVenda(IdVenda, IdVendedorInt, IdClienteInt, FormaPagamentoInt, TotalFloat)
 	-> envia_tupla_vendas(IdVenda)
 	; throw(http_reply(bad_request('Dados inconsistentes'))).
 
 
-atualiza_tupla_vendas(_{ idVendedor:IdVendedor,
-                        idTransacaoFluxoCaixa:IdTransacaoFluxoCaixa,
-						dataHoraAtual:DataHoraAtual,
-						formaPagamento:FormaPagamento }, IdVenda):-
-	vendas:atualizaVenda(IdVenda, IdVendedor, IdTransacaoFluxoCaixa, DataHoraAtual, FormaPagamento)
-	-> envia_tupla_vendas(IdVenda)
-	; throw(http_reply(not_found(IdVenda))).
+atualiza_tupla_vendas(_{ codVendedor:IdVendedorString,
+	                    codCliente:IdClienteString,
+						formaPagamento:FormaPagamentoString,
+						total:TotalString }, IdVendaString):-
+	number_string(TotalFloat, TotalString),	
+	number_string(IdVendedorInt, IdVendedorString),
+	number_string(IdVendaInt, IdVendaString),
+	number_string(IdClienteInt, IdClienteString),
+	number_string(FormaPagamentoInt, FormaPagamentoString),
+	vendas:atualizaVenda(IdVendaInt, IdVendedorInt, IdClienteInt, FormaPagamentoInt, TotalFloat)
+	-> envia_tupla_vendas(IdVendaInt)
+	; throw(http_reply(not_found(IdVendaString))).
 
 envia_tupla_vendas(IdVenda):-
-	vendas:vendas(IdVenda, IdVendedor, IdTransacaoFluxoCaixa, DataHoraAtual, FormaPagamentoNumber)
+	vendas:vendas(IdVenda, IdVendedor, IdCliente, FormaPagamento, TotalFloat)
 	-> reply_json_dict(_{ idVenda:IdVenda,
 	                      idVendedor:IdVendedor,
-                          idTransacaoFluxoCaixa:IdTransacaoFluxoCaixa,
-						  dataHoraAtual:DataHoraAtual,
-						  formaPagamento:FormaPagamentoNumber })
+						  idCliente:IdCliente,
+						  formaPagamento:FormaPagamento,
+						  total: TotalFloat })
 	; throw(http_reply(not_found(IdVenda))).
 
 envia_tabela_vendas :-
 	findall( _{ idVenda:IdVenda,
 	            idVendedor:IdVendedor,
-                idTransacaoFluxoCaixa:IdTransacaoFluxoCaixa,
-				dataHoraAtual:DataHoraAtual,
-				formaPagamento:FormaPagamento },
-	vendas:vendas(IdVenda, IdVendedor, IdTransacaoFluxoCaixa, DataHoraAtual, FormaPagamento),
+				idCliente:IdCliente,
+				formaPagamento:FormaPagamento,
+				total: TotalFloat },
+	vendas:vendas(IdVenda, IdVendedor, IdCliente, FormaPagamento, TotalFloat),
 	Tuplas ),
 	reply_json_dict(Tuplas). % envia o JSON para o solicitante
