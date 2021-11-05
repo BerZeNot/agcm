@@ -104,7 +104,7 @@ atualiza_tupla_cliente(_{nome:Nome,
                          identidade:Identidade,
                          complemento:Complemento,
                          compras:Compras,
-                         numvededor:NumVendedor,
+                         numvendedor:NumVendedor,
                          credito:Credito,
                          valorcredito:ValorCredito}, CPF):-
     number_string(TelefoneInt, Telefone),

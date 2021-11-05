@@ -31,7 +31,7 @@ titulo_da_pagina_fluxodecaixa(Titulo) -->
 
 tabela_de_fluxodecaixa -->
 	html(div(class('container-fluid py-3'),
-		[ \cabeca_da_tabela_fluxodecaixa('Fluxo de Caixa', '/fluxodecaixa'),
+		[ \cabeca_da_tabela_fluxodecaixa('Fluxo de Caixa', '/cadastrarFluxoDeCaixa'),
 			\tabela_fluxodecaixa
 		])
 	).

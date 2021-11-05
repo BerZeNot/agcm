@@ -75,7 +75,7 @@ fluxodecaixa(Metodo, Id, _Pedido):-
 	% responde com o código 405 Method Not Allowed
 	throw(http_reply(method_not_allowed(Metodo, Id))).
 
-insere_tupla_fluxodecaixa( _{numeroTransacao:NumeroTransacao,
+insere_tupla_fluxodecaixa( _{numerotransacao:NumeroTransacao,
 			     valor:Valor}):-
 	number_string(NumeroTransacaoInt, NumeroTransacao),
 	number_string(ValorInt, Valor),
@@ -84,7 +84,7 @@ insere_tupla_fluxodecaixa( _{numeroTransacao:NumeroTransacao,
 	; throw(http_reply(bad_request('Dados inconsistentes'))).
 
 
-atualiza_tupla_fluxodecaixa(_{numeroTransacao:NumeroTransacao,
+atualiza_tupla_fluxodecaixa(_{numerotransacao:NumeroTransacao,
 			      valor:Valor}, Id):-
 	number_string(NumeroTransacaoInt, NumeroTransacao),
 	number_string(ValorInt, Valor),
